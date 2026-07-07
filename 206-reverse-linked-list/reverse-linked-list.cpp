@@ -10,20 +10,21 @@
  */
 class Solution {
 public:
+    ListNode* rs(ListNode* temp1,ListNode* temp2)
+    {
+        if(temp2==nullptr)
+        return temp1;
+        ListNode* temp3=temp2->next;
+        temp2->next=temp1;
+        return rs(temp2,temp3);
+    }
     ListNode* reverseList(ListNode* head) {
         if(head==nullptr || head->next==nullptr)
         return head;
         ListNode* temp1=head;
         ListNode* temp2=head->next;
         temp1->next=nullptr;
-        while(temp2!=nullptr)
-        {
-            ListNode* temp3=temp2->next;
-            temp2->next=temp1;
-            temp1=temp2;
-            temp2=temp3;
-        }
-        return temp1;
-
+       head= rs(temp1,temp2);
+        return head;
     }
 };
