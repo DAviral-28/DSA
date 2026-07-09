@@ -13,7 +13,7 @@ public:
             int j=0;
             while(j<p)
             {
-                if(i<n && nums[i]==n-1-i)
+                if(i<n && nums[i]>=n-1-i)
                 return true;
                 i++;
                 j++;
