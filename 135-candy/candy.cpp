@@ -1,31 +1,36 @@
 class Solution {
 public:
     int candy(vector<int>& ratings) {
+        //slope wala approach
         int n=ratings.size();
-        vector<int>l(n);
-        vector<int>r(n);
-        l[0]=1;
-        for(int i=1;i<n;i++)
+        int i=1;
+        int sum=1;
+        int peak=0;
+        while(i<n)
         {
-            if(ratings[i]>ratings[i-1])
-            l[i]=l[i-1]+1;
-            else
-            l[i]=1;
+            if(ratings[i]==ratings[i-1])
+            {
+                i++;
+                sum++;
+                continue;
+            }
+            int peak=1;
+            while(i<n && ratings[i]>ratings[i-1])
+            {
+                peak++;
+                sum+=peak;
+                i++;
+            }
+            int down=1;
+            while(i<n && ratings[i]<ratings[i-1])
+            {
+                sum+=down;
+                down++;  
+                i++;
+            }
+            if(peak<down)
+            sum+=down-peak;
         }
-        r[n-1]=1;
-        for(int i=n-2;i>=0;i--)
-        {
-            if(ratings[i]>ratings[i+1])
-            r[i]=r[i+1]+1;
-            else
-            r[i]=1;
-        }
-        int m=0;
-        for(int i=0;i<n;i++)
-        {
-            m+=max(l[i],r[i]);
-        }
-        return m;
-
+        return sum;
     }
 };
