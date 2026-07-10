@@ -53,7 +53,7 @@ public:
             fir=fir->next;
             sec=sec->next;
         }
-        slow=rev(ww);
+        slow->next=rev(ww);
         return true;
         
     }
