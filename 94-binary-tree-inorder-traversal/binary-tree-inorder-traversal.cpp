@@ -11,17 +11,27 @@
  */
 class Solution {
 public:
-    void ino(TreeNode* root,vector<int>&v)
-    {
-        if(root==nullptr)
-        return ;
-        ino(root->left,v);
-        v.push_back(root->val);
-        ino(root->right,v);
-    }
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int>v;
-        ino(root,v);
+        stack<TreeNode*>s;
+        TreeNode* temp=root;
+        while(true)
+        {
+            if(temp)
+            {
+                s.push(temp);
+                temp=temp->left;
+            }
+            else
+            {
+                if(s.empty())
+                break;
+                temp=s.top();
+                s.pop();
+                v.push_back(temp->val);
+                temp=temp->right;
+            }
+        }
         return v;
     }
 };
