@@ -27,7 +27,7 @@ public:
     }
     bool canCross(vector<int>& stones) {
         int n=stones.size();
-        vector<vector<int>>dp(n,vector<int>(2000,-1));
+        vector<vector<int>>dp(n,vector<int>(5000,-1));
         return cc(stones,0,dp,0);
     }
 };
